@@ -21,6 +21,7 @@ COPY scripts/ scripts/
 # Install Solidity deps via forge
 RUN git init && \
     forge install OpenZeppelin/openzeppelin-contracts@v5.4.0 --no-git && \
+    forge install OpenZeppelin/openzeppelin-contracts-upgradeable@v5.4.0 --no-git && \
     forge install foundry-rs/forge-std@v1.15.0 --no-git
 
 # Pre-compile contracts (catches errors at build time, caches artifacts)

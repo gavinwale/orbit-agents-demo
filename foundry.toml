@@ -7,7 +7,7 @@ solc_version   = "0.8.28"
 via_ir         = true
 optimizer      = true
 optimizer_runs = 200
-no_size_check  = true
+bytecode_hash  = "none"
 
 remappings = [
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",

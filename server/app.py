@@ -29,9 +29,6 @@ FRONTEND = ROOT / "frontend"
 app = FastAPI(title="OrbitAgents Demo")
 sim = SimManager()
 
-# Serve static assets (CSS, JS)
-app.mount("/static", StaticFiles(directory=str(FRONTEND)), name="static")
-
 
 # ── Pages ─────────────────────────────────────────────────────────────────────
 
@@ -131,3 +128,7 @@ async def report(_=Depends(require_auth)):
     if sim.last_report:
         return HTMLResponse(sim.last_report)
     return HTMLResponse("<h1>No report yet</h1><p>Run a simulation first.</p>")
+
+
+# Serve static assets AFTER all routes (so / doesn't get intercepted)
+app.mount("/static", StaticFiles(directory=str(FRONTEND)), name="static")

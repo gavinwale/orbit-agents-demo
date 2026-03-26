@@ -3,6 +3,4 @@ builder = "dockerfile"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-healthcheckPath = "/api/sim/status"
-healthcheckTimeout = 60
 restartPolicyType = "on_failure"

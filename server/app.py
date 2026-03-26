@@ -29,6 +29,12 @@ FRONTEND = ROOT / "frontend"
 app = FastAPI(title="OrbitAgents Demo")
 sim = SimManager()
 
+@app.on_event("startup")
+async def startup():
+    import os
+    logger.info("Server starting on port %s", os.environ.get("PORT", "8000"))
+    logger.info("Frontend dir: %s (exists: %s)", FRONTEND, FRONTEND.exists())
+
 
 # ── Pages ─────────────────────────────────────────────────────────────────────
 

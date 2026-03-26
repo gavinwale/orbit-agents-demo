@@ -34,10 +34,6 @@ RUN pip install --no-cache-dir -r server/requirements.txt
 # Copy everything else
 COPY . .
 
-# Create results directory
 RUN mkdir -p results
 
-ENV PORT=8000
-EXPOSE 8000
-
-CMD uvicorn server.app:app --host 0.0.0.0 --port $PORT
+CMD ["python", "-c", "import os; port = os.environ.get('PORT', '8000'); os.execvp('uvicorn', ['uvicorn', 'server.app:app', '--host', '0.0.0.0', '--port', port])"]

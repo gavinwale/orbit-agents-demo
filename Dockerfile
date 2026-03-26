@@ -19,8 +19,9 @@ COPY contracts-oracle/ contracts-oracle/
 COPY scripts/ scripts/
 
 # Install Solidity deps via forge
-RUN forge install OpenZeppelin/openzeppelin-contracts@v5.4.0 --no-commit && \
-    forge install foundry-rs/forge-std@v1.15.0 --no-commit
+RUN git init && \
+    forge install OpenZeppelin/openzeppelin-contracts@v5.4.0 --no-git && \
+    forge install foundry-rs/forge-std@v1.15.0 --no-git
 
 # Pre-compile contracts (catches errors at build time, caches artifacts)
 RUN forge build --via-ir

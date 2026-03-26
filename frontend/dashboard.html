@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Protocol — Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <h1>Orbit Protocol</h1>
+        <span id="phase" class="phase">idle</span>
+      </div>
+      <div class="header-right">
+        <span id="timer" class="timer">0:00 / 5:00</span>
+        <button id="startBtn" class="btn btn-start" onclick="startSim()">Start Simulation</button>
+        <button id="stopBtn" class="btn btn-stop hidden" onclick="stopSim()">Stop</button>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+      <!-- Left: chart + stats -->
+      <div class="panel-left">
+        <div class="chart-area">
+          <canvas id="priceChart"></canvas>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card stat-yes">
+            <div class="value" id="statYes">0</div>
+            <div class="label">YES Trades</div>
+          </div>
+          <div class="stat-card stat-no">
+            <div class="value" id="statNo">0</div>
+            <div class="label">NO Trades</div>
+          </div>
+          <div class="stat-card stat-limit">
+            <div class="value" id="statLimit">0</div>
+            <div class="label">Limit Orders</div>
+          </div>
+          <div class="stat-card stat-errors">
+            <div class="value" id="statErrors">0</div>
+            <div class="label">Errors</div>
+          </div>
+          <div class="stat-card stat-agents">
+            <div class="value" id="statAgents">0/0</div>
+            <div class="label">Agents Done</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: event feed -->
+      <div class="panel-right">
+        <div class="feed-header">Live Feed</div>
+        <div class="feed" id="feed">
+          <div class="empty-state" id="emptyState">
+            <div class="icon">&#9678;</div>
+            <p>Click Start Simulation to begin</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News banner -->
+    <div id="newsBanner" class="news-banner"></div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

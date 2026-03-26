@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Protocol</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="#00d4ff" stroke-width="2" opacity="0.3"/>
+        <circle cx="24" cy="24" r="12" stroke="#00d4ff" stroke-width="2" opacity="0.6"/>
+        <circle cx="24" cy="24" r="4" fill="#00d4ff"/>
+        <ellipse cx="24" cy="24" rx="20" ry="8" stroke="#00d4ff" stroke-width="1.5" opacity="0.4" transform="rotate(-30 24 24)"/>
+      </svg>
+    </div>
+    <h1>Orbit Protocol</h1>
+    <p class="subtitle">Agent Simulation Demo</p>
+    <form id="loginForm">
+      <input type="password" id="password" placeholder="Enter password" autocomplete="off" autofocus>
+      <button type="submit">Launch</button>
+      <p id="error" class="error hidden"></p>
+    </form>
+  </div>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pw = document.getElementById('password').value;
+      const err = document.getElementById('error');
+      err.classList.add('hidden');
+      try {
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({password: pw}),
+        });
+        if (res.ok) {
+          window.location.href = '/dashboard';
+        } else {
+          err.textContent = 'Wrong password';
+          err.classList.remove('hidden');
+        }
+      } catch {
+        err.textContent = 'Connection failed';
+        err.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

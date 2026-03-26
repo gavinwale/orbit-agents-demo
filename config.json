@@ -1,0 +1,52 @@
+{
+  "project": "OrbitAgents",
+  "rpc": "http://127.0.0.1:8547",
+  "chain_id": 31337,
+  "anvil_port": 8547,
+  "dashboard_port": 8890,
+  "model": "deepseek/deepseek-chat",
+  "sim_duration_seconds": 300,
+  "agent_max_tokens": 1024,
+  "agent_concurrency": 20,
+  "markets": [
+    {
+      "question": "Will ETH exceed $5,000 by end of 2026?",
+      "funding_threshold": "10000000000000000000000",
+      "funding_duration": 60,
+      "trading_duration": 300
+    }
+  ],
+  "agents": {
+    "traders":    15,
+    "lp":          8,
+    "arb":         4,
+    "oracle":      6,
+    "adversarial": 8
+  },
+  "funding": {
+    "usdc_per_agent": "10000000000000000000000"
+  },
+  "news_events": [
+    {
+      "delay_seconds": 90,
+      "message": "FLASH: Major exchange suffers $800M hack. ETH crashing 18% to $3,100. Market panic, heavy sell-off.",
+      "sentiment": "bearish"
+    },
+    {
+      "delay_seconds": 180,
+      "message": "UPDATE: ETH stabilizes near $3,400. BlackRock announces $2B additional allocation to their spot ETH ETF.",
+      "sentiment": "neutral"
+    },
+    {
+      "delay_seconds": 270,
+      "message": "BREAKING: SEC approves Ethereum staking ETFs. Fidelity, Vanguard both filing. Analysts raise 2026 ETH target to $7,500.",
+      "sentiment": "bullish"
+    }
+  ],
+  "ooa": {
+    "propose_bond":    "200000000000000000000",
+    "challenge_bond":  "200000000000000000000",
+    "challenge_window": "300",
+    "reserve_fund":    "10000000000000000000000"
+  }
+}
